@@ -1,15 +1,41 @@
 <%- include('partials/header') -%>
-  <div class="container">
-    <div class="row justify-content-center mt-5">
-      <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
-          </li>
-        <% } %>
-        </ul>
-    </div>
-  </div>  
+<!-- Includes the header part of the HTML from a separate file -->
+
+<div class="container">
+  <!-- Creates a container for the content -->
+
+  <div class="row justify-content-center mt-5">
+    <!-- Creates a row and centers its content with a top margin -->
+
+    <ul class="row list-unstyled">
+      <!-- Creates an unordered list without bullets, arranged in a row -->
+
+      <% for(var i=0; i<posts.length; i++) { %>
+        <!-- Starts a loop to go through each post -->
+
+        <li class="col-6 justify-content-between mt-5">
+          <!-- Creates a list item that takes up half the row's width with a top margin -->
+
+          <a href="/post/<%= posts[i]._id %>">
+            <!-- Creates a link to the specific post's page using its ID -->
+
+            <img class="img-fluid" src="<%= posts[i].image %>">
+            <!-- Displays the post's image, making it responsive -->
+
+          </a>
+        </li>
+        <!-- Ends the list item -->
+      <% } %>
+      <!-- Ends the loop -->
+
+    </ul>
+    <!-- Ends the unordered list -->
+
+  </div>
+  <!-- Ends the row -->
+
+</div>
+<!-- Ends the container -->
+
 <%- include('partials/footer') -%>
+<!-- Includes the footer part of the HTML from a separate file -->
