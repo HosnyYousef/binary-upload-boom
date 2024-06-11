@@ -1,5 +1,14 @@
 const cloudinary = require("../middleware/cloudinary");
+// this code imports cloudinary
+// creating account in cloudinary, to work with images
+// supports a host of different programing languages
+  // needs an api key to connect cloudinary
+    // need cloud name, cloud key, and cloud api secret key
+//needs to be installed in terminal first
+// Cloudinary improves image management by providing faster loading, easy edits, global delivery, handling many images, security, and reducing server load.
+//Cloudinary is useful for e-commerce, social media, blogs, news sites, portfolios, travel sites, and educational platforms to manage and optimize images and videos efficiently.
 const Post = require("../models/Post");
+// accesses the file that is used to interact with the posts collection in the MongoDB database
 
 module.exports = {
   getProfile: async (req, res) => {
