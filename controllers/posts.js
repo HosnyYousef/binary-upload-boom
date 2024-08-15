@@ -70,15 +70,17 @@ module.exports = {
 
     try {
       const post = await Post.findById(req.params.id);
-      const comments = await Comment.findById(req.params.id);
-
+      const comments = await Comment.find({ postId: req.params.id});
+      // if (!comments) {
+      //   comments = 'none'
+      // }
       // const comment = await Post.findById(req.params.id); 
       // Fetches a single post by its ID
       //   •	Uses the Post model to find a post in the database.
       //   •	Looks for the post using the ID provided in the request parameters (req.params.id).
       //   •	Waits for the database operation to complete.
       //   •	Stores the found post in the post variable.
-      res.render("post.ejs", { post: post, user: req.user , comments: comment});
+      res.render("post.ejs", { post: post, user: req.user , comments: comments});
       // Renders the post.ejs view, passing the fetched post and user info
       //   •	Uses the res.render method to display a webpage.
       //   •	The webpage template being used is “post.ejs”.
