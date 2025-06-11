@@ -1,99 +1,43 @@
 <%- include('partials/header') -%>
-<!-- Includes the header part of the HTML from a separate file -->
 
 <div class="container">
-  <!-- Creates a container for the content -->
-
   <div class="row mt-5">
-    <!-- Creates a row with a top margin -->
-
     <div class="col-6">
-      <!-- Creates a column that takes up half the row's width -->
-
       <div>
-        <!-- Creates a container for user information -->
-
         <p><strong>User Name</strong>: <%= user.userName %></p>
-        <!-- Displays the user's name -->
-
         <p><strong>Email</strong>: <%= user.email %></p>
-        <!-- Displays the user's email -->
-
         <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-        <!-- Button to log out -->
       </div>
 
       <div class="mt-5">
-        <!-- Creates a container with a top margin -->
-
         <h2>Add a post</h2>
-        <!-- Heading for adding a post -->
-
         <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-          <!-- Form to create a new post, using POST method and allowing file uploads -->
-
           <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" id="title" name="title">
           </div>
-          <!-- Input field for the post title -->
 
           <div class="mb-3">
             <label for="caption" class="form-label">Caption</label>
             <textarea class="form-control" id="caption" name="caption"></textarea>
           </div>
-          <!-- Text area for the post caption -->
 
           <div class="mb-3">
             <label for="imgUpload" class="form-label">Image</label>
             <input type="file" class="form-control" id="imageUpload" name="file">
           </div>
-          <!-- File input for uploading an image -->
 
           <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-          <!-- Submit button for the form -->
         </form>
       </div>
     </div>
-    <!-- Ends the left column -->
 
     <div class="col-6">
-      <!-- Creates another column that takes up half the row's width -->
-
       <ul class="row list-unstyled">
-        <!-- Creates an unordered list without bullets, arranged in a row -->
-
         <% for (var i = 0; i < posts.length; i++) { %>
-          <!-- Loops through each post -->
-
           <li class="col-6 justify-content-between mt-5">
-            <!-- Creates a list item that takes up half the row's width with a top margin -->
-
             <a href="/post/<%= posts[i]._id %>">
-              <!-- Link to the specific post's page using its ID -->
-
               <img class="img-fluid" src="<%= posts[i].image %>">
-              <!-- Displays the post's image, making it responsive -->
             </a>
           </li>
-          <!-- Ends the list item -->
         <% } %>
-        <!-- Ends the loop -->
-      </ul>
-      <!-- Ends the unordered list -->
-
-      <div class="row justify-content-center mt-5">
-        <!-- Creates a row, centers its content, and adds a top margin -->
-
-        <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        <!-- Button to return to the feed page -->
-      </div>
-    </div>
-    <!-- Ends the right column -->
-  </div>
-  <!-- Ends the row -->
-</div>
-<!-- Ends the container -->
-
-<%- include('partials/footer') -%>
-<!-- Includes the footer part of the HTML from a separate file -->
