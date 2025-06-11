@@ -11,7 +11,6 @@ module.exports = {
       console.log(err);
     }
   },
-
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
@@ -20,17 +19,15 @@ module.exports = {
       console.log(err);
     }
   },
-
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      const comments = await Comment.find({ postId: req.params.id });
-      res.render("post.ejs", { post: post, user: req.user, comments: comments });
+      const comments = await Comment.find({ postId: req.params.id});
+      res.render("post.ejs", { post: post, user: req.user , comments: comments});
     } catch (err) {
       console.log(err);
     }
   },
-
   createPost: async (req, res) => {
     try {
       const result = await cloudinary.uploader.upload(req.file.path);
@@ -43,19 +40,19 @@ module.exports = {
         likes: 0,
         user: req.user.id,
       });
-
       console.log("Post has been added!");
       res.redirect("/profile");
     } catch (err) {
       console.log(err);
     }
   },
-
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
-        { $inc: { likes: 1 } }
+        {
+          $inc: { likes: 1 },
+        }
       );
       console.log("Likes +1");
       res.redirect(`/post/${req.params.id}`);
@@ -63,7 +60,6 @@ module.exports = {
       console.log(err);
     }
   },
-
   deletePost: async (req, res) => {
     try {
       let post = await Post.findById({ _id: req.params.id });
@@ -75,17 +71,15 @@ module.exports = {
       res.redirect("/profile");
     }
   },
-
   addComment: async (req, res) => {
-    console.log(req.body);
-    console.log(req.params);
+    console.log(req.body)
+    console.log(req.params)
     try {
       await Comment.create({
         comment: req.body.commentItem,
         postId: req.params.id,
         user: req.user.id,
       });
-
       console.log("Comment has been added!");
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
